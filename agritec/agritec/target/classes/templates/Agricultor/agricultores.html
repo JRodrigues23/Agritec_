@@ -1,0 +1,87 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Lista de Agricultores</title>
+    <style> 
+     body{
+		background-color:hsl(131,87%,6%);;
+	
+   	  
+     }
+     img{
+		 
+		 opacity:0.1;
+		 width: 40%;
+		  position: absolute;
+		 margin-left:auto;
+		 margin-right:auto;
+		 margin-top: 5%;
+		 left:0;
+		 right:0;
+		 text-align: center;
+		 
+	  }
+     th{
+		 color:white
+     }
+      h1{
+		 color:white
+     }
+     td {
+		 color:white
+     }
+    </style>
+  </head>
+  <body>
+  <img src='/imagens/logoagri.png' alt="logomarca">
+  
+  <h1><center>LISTA DE AGRICULTORES</center></h1>
+  <br><br><br>
+    <div class="container mt-4">
+    <div class="row">
+    <div class="col-12">
+    <table class="table table-hover">
+    <thead>
+    <tr>
+    <!--adcionar informações do banco-->
+    <th scope="col">ID AGRI</th>
+    <th scope="col">CPF</th>
+    <th scope="col">NOME</th>
+    <th scope="col">E-MAIL</th>
+    <th scope="col">PRODUTO PRODUZIDO</th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="agricultor : ${agricultores}">
+    <th class="col-1" scope="row" th:text="${agricultor.idagri}">ID AGRI</th>
+    <td class="col-4" th:text="${agricultor.cpf}">CPF</td>
+    <td class="col-2" th:text="${agricultor.nome}">NOME</td>
+    <td class="col-2" th:text="${agricultor.email}">E-MAIL</td>
+    <td class="col-2" th:text="${agricultor.produtoproduzido}">PRODUTO PRODUZIDO</td>
+    
+    <td class="col-1"><a th:href="@{/agricultor/{agricultoresidagri}(agricultoresidagri = ${agricultor.idagri})}">
+    <button style="background:Chocolate; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: #132c0d; font-size: 16px; ">DETALHES</button></a></td>
+    <td class="col-1"><a th:href="@{/agricultor/{agricultoresidagri}/edit(agricultoresidagri = ${agricultor.idagri})}">
+    <button style="background: royalblue; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: #132c0d; font-size: 16px; ">EDITAR</button></a></td>
+    <td class="col-1"><a th:href="@{/agricultor/{agricultoresidagri}/edit(agricultoresidagri = ${agricultor.idagri})}">
+    <button style="background: brown; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: #132c0d; font-size: 16px; ">DELETAR</button></a></td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    <div class="row">
+      <br><br><br>
+    <a href="/Agricultor/novoagricultor"> <button style="background: MediumSeaGreen; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: #132c0d; font-size: 16px; ">NOVO AGRICULTOR</button> </a>
+    
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>
