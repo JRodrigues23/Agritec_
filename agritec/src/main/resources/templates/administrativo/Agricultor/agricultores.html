@@ -38,7 +38,7 @@
   </head>
   <body>
   <img src='/imagens/logoagri.png' alt="logomarca">
-  
+  <br> <br> 
   <h1><center>LISTA DE AGRICULTORES</center></h1>
   <br><br><br>
     <div class="container mt-4">
@@ -48,11 +48,11 @@
     <thead>
     <tr>
     <!--adcionar informações do banco-->
-    <th scope="col">ID AGRI</th>
-    <th scope="col">CPF</th>
-    <th scope="col">NOME</th>
-    <th scope="col">E-MAIL</th>
-    <th scope="col">PRODUTO PRODUZIDO</th>
+    <th scope="col"> ID </th>
+    <th scope="col"> CPF </th>
+    <th scope="col"> NOME </th>
+    <th scope="col"> E-MAIL </th>
+    <th scope="col"> PRODUTO PRODUZIDO </th>
     <th scope="col"></th>
     <th scope="col"></th>
     <th scope="col"></th>
@@ -60,11 +60,11 @@
     </thead>
     <tbody>
     <tr th:each="agricultor : ${agricultores}">
-    <th class="col-1" scope="row" th:text="${agricultor.idagri}">ID AGRI</th>
-    <td class="col-4" th:text="${agricultor.cpf}">CPF</td>
-    <td class="col-2" th:text="${agricultor.nome}">NOME</td>
-    <td class="col-2" th:text="${agricultor.email}">E-MAIL</td>
-    <td class="col-2" th:text="${agricultor.produtoproduzido}">PRODUTO PRODUZIDO</td>
+    <th class="col-1" scope="row" th:text="${agricultor.idagri}"> ID </th>
+    <td class="col-4" th:text="${agricultor.cpf}"> CPF </td>
+    <td class="col-2" th:text="${agricultor.nome}"> NOME </td>
+    <td class="col-2" th:text="${agricultor.email}"> E-MAIL </td>
+    <td class="col-2" th:text="${agricultor.produtoproduzido}"> PRODUTO PRODUZIDO </td>
     
     
     <!--EDITAR-->
@@ -72,6 +72,7 @@
     <button style="background: royalblue; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: #132c0d; font-size: 16px; ">EDITAR</button></a>
     </td>
     
+    <!--INICIO DE DELETAR-->
     		<td class="col-1"> 
 								<a role="button" data-bs-toggle="modal"
 									th:data-bs-target="${'#deleteUsuario' + agricultor.idagri }" href="">
@@ -85,14 +86,12 @@
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h1 class="modal-title fs-5" id="exdeleteUsuario">Deletar
-														usuario
-													</h1>
+													<h1 class="modal-title fs-5" id="exdeleteUsuario" style="color:black"  >DELETAR USUARIO</h1>
 													<button type="button" class="btn-close" data-bs-dismiss="modal"
 														aria-label="Close"></button>
 												</div>
 												<div class="modal-body" >
-													<p style="color:black">Deseja Realmente deletar o item? <span th:text="${agricultor.idagri}"> </span></p>
+													<p style="color:black">DESEJA REALMENTE DELETAR O ITEM: <span th:text="${agricultor.nome}"></span> ?</p>
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"
