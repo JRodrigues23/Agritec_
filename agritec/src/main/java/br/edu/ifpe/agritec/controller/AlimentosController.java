@@ -36,21 +36,23 @@ public class AlimentosController {
 		return mv;
 	}
 
-	@GetMapping ("Alimentos/novoalimentos")
+	@GetMapping ("administrativo/Alimentos/novoalimentos")
 	public ModelAndView novoalimentos() {
-		ModelAndView mv = new  ModelAndView("Alimentos/novoalimentos");
+		ModelAndView mv = new  ModelAndView("administrativo/Alimentos/novoalimentos");
 		//mv.addObject();
 		return mv;	
 	}
 	
+	
+	//INSERINDO NO BANCO DE DADOS
 	@Autowired
 	AlimentosDao alimentosdao;
 	
-	@PostMapping("/alimentos")
+	@PostMapping("administrativo/alimentos")
 	public ModelAndView createAlimentos(@Validated  Alimentos alimentos,BindingResult bindingResults) {
 		
 		if(bindingResults.hasErrors()) {
-			ModelAndView mv = new ModelAndView("Alimentos/novoalimentos");
+			ModelAndView mv = new ModelAndView("administrativo/Alimentos/novoalimentos");
 			//mv.addObject("Produto",Produto.values());
 			return mv;
 			}
@@ -61,7 +63,8 @@ public class AlimentosController {
 			e.printStackTrace();
 		}
 		
-		return new ModelAndView ( "redirect:/alimentos");
+		return new ModelAndView ( "redirect:/administrativo/"
+				+ "alimentos");
 
 			
 	}

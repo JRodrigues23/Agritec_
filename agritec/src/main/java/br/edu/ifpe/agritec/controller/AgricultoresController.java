@@ -81,10 +81,10 @@ public class AgricultoresController {
 		public ModelAndView createAgricultores(@Validated Agricultores agricultores, BindingResult bindingResults, @RequestParam("file") MultipartFile fotoAgricultores) {
 			
 			if(bindingResults.hasErrors()) {
-			ModelAndView mv = new ModelAndView("administrativo/Agricultor/novoagricultor");
-			mv.addObject("Produto",Produto.values());
-			return mv;
-			}
+				ModelAndView mv = new ModelAndView("administrativo/Agricultor/novoagricultor");
+				//mv.addObject("Produto",Produto.values());
+				return mv;
+				}
 			
 			try {
 				agricultoresDao.adcionarAgricultores(agricultores);	
