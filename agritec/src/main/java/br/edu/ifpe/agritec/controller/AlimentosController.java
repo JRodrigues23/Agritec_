@@ -18,7 +18,7 @@ import br.edu.ifpe.agritec.model.Produto;
 @Controller
 public class AlimentosController {
 	
-	@GetMapping("/alimentos")
+	@GetMapping("administrativo/alimentos")
 	public ModelAndView alimentos() {
 		
 		AlimentosDao alimentosdao = new AlimentosDao();
@@ -31,7 +31,7 @@ public class AlimentosController {
 			e.printStackTrace();
 		}  
 		
-		ModelAndView mv = new ModelAndView("Alimentos/alimentos");
+		ModelAndView mv = new ModelAndView("administrativo/Alimentos/alimentos");
 		mv.addObject("alimentos",alimentos);
 		return mv;
 	}
