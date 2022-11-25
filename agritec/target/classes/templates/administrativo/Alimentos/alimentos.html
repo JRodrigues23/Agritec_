@@ -68,30 +68,30 @@
     
     
     <!--EDITAR-->
-    <td class="col-1"><a th:href="@{/administrativo/alimentos/editarAgricultor/{idagri} (idagri = ${agricultor.idagri})}">
+    <td class="col-1"><a th:href="@{/administrativo/alimentos/editarAlimentos/{idAlimentos} (idAlimentos = ${alimentos.idAlimentos})}">
     <button style="background: royalblue; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: #132c0d; font-size: 16px; ">EDITAR</button></a>
     </td>
     
     <!--INICIO DE DELETAR-->
     		<td class="col-1"> 
 								<a role="button" data-bs-toggle="modal"
-									th:data-bs-target="${'#deleteUsuario' + agricultor.idagri }" href="">
+									th:data-bs-target="${'#deleteAlimento' + alimentos.idAlimentos }" href="">
 									<i class="fa-regular fa-trash-can" style="color:rgb(255, 0, 0);"></i><button style="background: brown; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: #132c0d; font-size: 16px;">Deletar</button></a>
 								<form
-									th:action="@{/administrativo/agricultor/{idagri}/delete (idagri = ${agricultor.idagri})}"
+									th:action="@{/administrativo/alimentos/{idAlimentos}/delete (idAlimentos = ${alimentos.idAlimentos})}"
 									method="post">
 
-									<div class="modal fade" th:id="${'deleteUsuario' + agricultor.idagri}" tabindex="-1"
+									<div class="modal fade" th:id="${'deleteAlimento' + alimentos.idAlimentos}" tabindex="-1"
 										aria-labelledby="exampleModalLabel" aria-hidden="true">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h1 class="modal-title fs-5" id="exdeleteUsuario" style="color:black"  >DELETAR USUARIO</h1>
+													<h1 class="modal-title fs-5" id="exdeleteUsuario" style="color:black"  >DELETAR ALIMENTO</h1>
 													<button type="button" class="btn-close" data-bs-dismiss="modal"
 														aria-label="Close"></button>
 												</div>
 												<div class="modal-body" >
-													<p style="color:black">DESEJA REALMENTE DELETAR O ITEM: <span th:text="${agricultor.nome}"></span> ?</p>
+													<p style="color:black">DESEJA REALMENTE DELETAR O ITEM: <span th:text="${alimento.nome}"></span> ?</p>
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"
@@ -112,7 +112,7 @@
 	    </div>
 	    <div class="row">
 	      <br><br><br>
-    <a href="/administrativo/Agricultor/novoagricultor"> <button style="background: MediumSeaGreen; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: #132c0d; font-size: 16px; ">NOVO AGRICULTOR</button> </a>
+    <a href="/administrativo/Alimento/novoalimento"> <button style="background: MediumSeaGreen; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: #132c0d; font-size: 16px; ">NOVO ALIMENTO</button> </a>
     
 
     </div>
