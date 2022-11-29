@@ -69,7 +69,7 @@ public class AgricultoresDao {
 		return listaTodosAgricultores;
 	}
 	
-	//CONSULTA 
+	//CONSULTA  
 		public Agricultores colsultarAgricultoresId(int idagri) throws ClassNotFoundException, SQLException{
 			Connection connection = ConexaoMySQL.getConexaoMySQL();
 			String sql = "SELECT `idAgri`,  `cpf`, `nome`, `email`, `produtoproduzido` FROM `agricultores` WHERE idagri=?";
