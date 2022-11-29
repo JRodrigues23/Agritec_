@@ -34,7 +34,7 @@ public class AlimentosDao {
 	//CONSULTA
 	public List<Alimentos> consultarTodosAlimentos() throws  ClassNotFoundException, SQLException{
 		Connection connection = ConexaoMySQL.getConexaoMySQL();
-		String sql = "SELECT a.idAlimentos, f.nome, c.dataDeColheita, v.dataDeValidade, t.tipo from alimentos as a INNER JOIN agricultores as u on a.idAgri = u.idAgri";
+		String sql = "SELECT `idAlimentos`, `nome`, `dataDeValidade`, `dataDeColheita`, `tipo` FROM `alimentos` WHERE idAlimentos=?";
 		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 		
 		ResultSet resultSet = stmt.executeQuery();
@@ -46,12 +46,12 @@ public class AlimentosDao {
 			
 			int idAlimentos = resultSet.getInt("idAlimentos");
 			alimentos.setIdAlimentos(idAlimentos);
-			String nome = resultSet.getString(2);
+			String nome = resultSet.getString(1);
 			alimentos.setNome(nome);
-			String dataDeValidade = resultSet.getString(3);
+			String dataDeValidade = resultSet.getString(2);
 			alimentos.setDataDeValidade(dataDeValidade);
-			alimentos.setDataDeColheita(resultSet.getString (4));
-			alimentos.setTipo(resultSet.getString(5));
+			alimentos.setDataDeColheita(resultSet.getString (3));
+			alimentos.setTipo(resultSet.getString(4));
 			
 			listarTodosAlimentos.add(alimentos);
 			
