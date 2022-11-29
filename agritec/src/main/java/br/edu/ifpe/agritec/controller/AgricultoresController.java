@@ -99,6 +99,7 @@ public class AgricultoresController {
 			try {
 				if(!fotoAgricultores.isEmpty()) {
 					byte[] bytes = fotoAgricultores.getBytes();
+					//ESSA PARTE GARANTE QUE A IMAGEM NÃO SEJA SALVA COM O MESMO NOME
 					Path CaminhoImagens = Paths.get(caminhofotoAgricultor+String.valueOf(agricultores.getIdagri())+fotoAgricultores.getOriginalFilename());
 					Files.write(CaminhoImagens, bytes);
 					
@@ -128,6 +129,8 @@ public class AgricultoresController {
 			
 			
 		}
+		
+	
 		
 		//PARTE DE EDITAR 
 		@GetMapping("administrativo/agricultor/editarAgricultor/{idagri}")
@@ -188,6 +191,21 @@ public class AgricultoresController {
 		
 		// FIM DA PARTE DE DELETAR 
 		
-	
+		
+		//PARTE DE EXIBIR IMAGEM
+		@PostMapping ("/administrativo/agricultor/mostrarImagem/{imagem}")
+		public byte[] retornarImagem(@PathVariable("foto") String foto) {
+			File imagemArquivo = new File(caminhofotoAgricultor+foto);
+			if (foto != null || foto.trim().length() > 0) {
+				try {
+					return Files.readAllBytes(imagemArquivo.toPath());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return null;
+	}
+	//FIM DA PARTE DE EXIBIR IMAGEM	
 
 }
