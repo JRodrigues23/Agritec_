@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -63,11 +64,48 @@ public class AlimentosController {
 			e.printStackTrace();
 		}
 		
-		return new ModelAndView ( "redirect:/administrativo/"
-				+ "alimentos");
+		return new ModelAndView ( "redirect:/administrativo/alimentos");
 
 			
 	}
+	//UPDATE
+	@PostMapping("administrativo/alimentos/editarAlimentos/{idAlimentos}")
+	public ModelAndView update (@PathVariable int idAlimentos, Alimentos alimentos, BindingResult bindingResults) {
+		if(bindingResults.hasErrors()){
+		ModelAndView mv = new ModelAndView ("administrativo/alimentos/editarAlimentos");
+		mv.addObject("Produto",Produto.values());
+		return mv;
+		
+		}else {
+			try {
+				alimentos.setIdAlimentos(idAlimentos);
+				alimentosdao.atualizarAlimentos(alimentos);
+			}catch  (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+			return new ModelAndView("redirect/administrativo/alimentos");
+		}
+		
+	}
+	
+	// PARTE DE DELETAR 
+	
+			@PostMapping ("/administrativo/alimentos/{idAlimentos}/delete")
+			public ModelAndView deleteAlimentos(@PathVariable int idAlimentos) {
+				//int idagri = (int) idagri.intValue():
+					try {
+						alimentosdao.deletarAlimentos(idAlimentos);
+					} catch (ClassNotFoundException | SQLException e ) {
+						e.printStackTrace();
+					}
+					return new ModelAndView("redirect:/administrativo/alimentos");
+			}
+			
+			// FIM DA PARTE DE DELETAR 
+			
+	
+	
+	
 	
 	
 	

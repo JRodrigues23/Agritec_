@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class AgricultoresDao {
 	
-	//ADCIONA NO BANCO DA DADOS
+	//ADCIONA NO BANCO DE DADOS
 	public void adcionarAgricultores(Agricultores agricultores) throws ClassNotFoundException, SQLException{
 		
 		Connection connection = ConexaoMySQL.getConexaoMySQL();

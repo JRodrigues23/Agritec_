@@ -1,0 +1,123 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+	 body{
+		 background-color:hsl(131,87%,6%);;
+		
+     }    
+     
+	     .form-label{
+		color:white
+	}
+ 
+	  input{
+		   opacity:0.3;
+		  
+	  }
+	  
+	  select{
+		   opacity:0.3;	 
+		
+	  }
+	  
+
+	img{
+		 
+		 opacity:0.3;
+		 width: 40%;
+		 position: absolute;
+		 margin-left:auto;
+		 margin-right:auto;
+		 margin-top: 8%;
+		 left:40%;
+		 right:0;
+		 text-align: center;
+		 
+	  }
+
+	h1{
+	color:white
+}
+	
+    </style>
+  </head>
+  <body>
+  <img src='/imagens/logoagri.png' alt="logomarca">
+  <br> <br> 
+   <center> <h1> NOVO ALIMENTO </h1> </center>
+	<br> <br> <br> <br>
+   
+    <div class="container mt-4">
+    <div class="row">
+    
+  </body>
+    <form action='/administrativo/alimentos' enctype="multipart/form-data" th:object= "${alimentos}" method='POST'>
+    	<div class="form-row">
+    	
+    
+    	
+    	 <div class="col-md-4 mb-3">
+	    	<label class="form-label"><strong> NOME DO ALIMENTO</strong> </label>
+	    	<input class="form-control" type="text" name="nome" placeholder="NOME DO PRODUTO">
+	    	<div></div>
+    	</div>
+    	
+    		 <div class="col-md-4 mb-3">
+	    	<label class="form-label"> <strong>DATA DE COLHEITA</strong> </label>
+	    	<input oninput="mascara(this)" class="form-control" type="text"  name="colheita"  id="campo_colheita" placeholder="APENAS NÚMEROS" >  
+	    	<div></div>
+    	</div>
+    	
+   			 <div class="col-md-4 mb-3">
+	    	<label class="form-label"> <strong>DATA DE VALIDADE</strong> </label>
+	    	<input oninput="mascara(this)" class="form-control" type="text"  name="validade"  id="campo_validade" placeholder="APENAS NÚMEROS" >  
+	    	<div></div>
+    	</div>
+    	
+    	 <div class="col-md-4 mb-3">
+	    	<label class="form-label"><strong> TIPO </strong></label>
+	    	<input class="form-control" type="text" name="tipo" placeholder="TIPO DO PRODUTO">
+	    	<div></div>
+    	</div>
+    	</div>
+    	
+
+      
+	    	</select>
+	    	<div>
+	    </div>
+    	</div>
+    	
+    	<br>
+    	<button class="btn btn-primary" type= "submit" style="background:Mediumseagreen; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: #132c0d; font-size: 16px; "> Submeter </button>
+		<a href="javascript:history.back()" style= ><button style = "background:Green; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: #132c0d; font-size: 16px; ">Voltar</button></a>
+    </form>
+    
+  
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script>
+  	 	function mascara(i){
+   
+   var v = i.value;
+   
+   if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
+      i.value = v.substring(0, v.length-1);
+      return;
+   }
+   
+   i.setAttribute("maxlength", "10");
+   if (v.length == 5 || v.length == 2) i.value += "/";
+   if (v.length == 12) i.value += "/";
+
+}
+  </script>
+  </body>
+</html>
+<!--https://dev.to/elisangelamsilva/validacao-e-formatacao-de-campos-e-dados-com-html-e-javascript-3l9g-->
+
