@@ -64,7 +64,7 @@
     <td class="col-4" th:text="${agricultor.cpf}"> CPF </td>
     <td class="col-2" th:text="${agricultor.nome}"> NOME </td>
     <td class="col-2" th:text="${agricultor.email}"> E-MAIL </td>
-    <td class="col-2" th:src="@{/administrativo/agricultor/mostrarFoto/{foto} (idagri = ${agricultor.foto})}" width="100"></td>
+    <td class="col-2"> <img th:src="@{/administrativo/agricultor/mostrarFoto/{foto} (idagri = ${agricultor.foto})}" width="100"></td>
     <td class="col-2" th:text="${agricultor.produtoproduzido}"> PRODUTO PRODUZIDO </td>
     
     
