@@ -1,6 +1,7 @@
 package br.edu.ifpe.agritec.controller;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,9 @@ public class AlimentosController {
 		try {
 			alimentosdao.adicionarAlimentos(alimentos);	
 		} catch(ClassNotFoundException|SQLException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

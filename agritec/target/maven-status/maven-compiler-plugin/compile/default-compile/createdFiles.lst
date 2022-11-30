@@ -1,0 +1,12 @@
+br\edu\ifpe\agritec\model\Produto.class
+br\edu\ifpe\agritec\AgritecApplication.class
+br\edu\ifpe\agritec\model\Alimentos.class
+br\edu\ifpe\agritec\model\Agricultores.class
+br\edu\ifpe\agritec\controller\requestMapping.class
+br\edu\ifpe\agritec\dao\AlimentosDao.class
+br\edu\ifpe\agritec\dao\AgricultoresDao.class
+br\edu\ifpe\agritec\controller\AlimentosController.class
+br\edu\ifpe\agritec\model\Funcionario.class
+br\edu\ifpe\agritec\dao\ConexaoMySQL.class
+br\edu\ifpe\agritec\controller\PrincipalController.class
+br\edu\ifpe\agritec\controller\AgricultoresController.class
