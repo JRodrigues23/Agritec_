@@ -73,10 +73,10 @@ public class AlimentosController {
 			
 	}
 	//UPDATE
-	@PostMapping("administrativo/alimentos/editarAlimentos/{idAlimentos}")
+	@PostMapping("administrativo/Alimentos/editarAlimentos/{idAlimentos}")
 	public ModelAndView update (@PathVariable int idAlimentos, Alimentos alimentos, BindingResult bindingResults) {
 		if(bindingResults.hasErrors()){
-		ModelAndView mv = new ModelAndView ("administrativo/alimentos/editarAlimentos");
+		ModelAndView mv = new ModelAndView ("administrativo/Alimentos/editarAlimentos");
 		mv.addObject("Produto",Produto.values());
 		return mv;
 		
