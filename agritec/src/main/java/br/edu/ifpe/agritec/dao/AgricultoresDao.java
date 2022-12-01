@@ -21,13 +21,14 @@ public class AgricultoresDao {
 		
 		Connection connection = ConexaoMySQL.getConexaoMySQL();
 	String sql = "INSERT INTO `agricultores`"
-			+ "( `cpf`,  `nome` ,`email`, `produtoproduzido`) "
-			+ " VALUES (? , ? , ? , ?)";
+			+ "( `cpf`,  `nome` ,`email`,`foto`,`produtoproduzido`) "
+			+ " VALUES (? , ? , ? , ? , ?)";
 	PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 	stmt.setString(1, agricultores.getCpf());
 	stmt.setString(2, agricultores.getNome());
 	stmt.setString(3, agricultores.getEmail());
-	stmt.setString(4, agricultores.getProdutoproduzido());
+	stmt.setString(4, agricultores.getFoto());
+	stmt.setString(5, agricultores.getProdutoproduzido());
 	
 	stmt.execute();
 
@@ -39,7 +40,7 @@ public class AgricultoresDao {
 	//CONSULTA 
 	public List<Agricultores> colsultarTodosAgricultores() throws ClassNotFoundException, SQLException{
 		Connection connection = ConexaoMySQL.getConexaoMySQL();
-		String sql = "SELECT `idAgri`,  `cpf`, `nome`, `email`, `produtoproduzido` FROM `agricultores`";
+		String sql = "SELECT `idAgri`,  `cpf`, `nome`, `email`,`foto`, `produtoproduzido` FROM `agricultores`";
 
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		
@@ -55,10 +56,14 @@ public class AgricultoresDao {
 		
 			String cpf = resultSet.getString(2);
 			agricultores.setCpf(cpf);
+			
 			String nome = resultSet.getString(3);
 			agricultores.setNome(nome);
-			agricultores.setEmail(resultSet.getString(4));
-			agricultores.setProdutoproduzido(resultSet.getString(5));
+			
+			String email = resultSet.getString(4);
+			agricultores.setEmail(email);
+			agricultores.setFoto(resultSet.getString(5));
+			agricultores.setProdutoproduzido(resultSet.getString(6));
 			
 			listaTodosAgricultores.add(agricultores);
 			
@@ -72,7 +77,7 @@ public class AgricultoresDao {
 	//CONSULTA  
 		public Agricultores colsultarAgricultoresId(int idagri) throws ClassNotFoundException, SQLException{
 			Connection connection = ConexaoMySQL.getConexaoMySQL();
-			String sql = "SELECT `idAgri`,  `cpf`, `nome`, `email`, `produtoproduzido` FROM `agricultores` WHERE idagri=?";
+			String sql = "SELECT `idAgri`,  `cpf`, `nome`, `email`,`foto`, `produtoproduzido` FROM `agricultores` WHERE idagri=?";
 
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setInt(1, idagri);
@@ -91,7 +96,8 @@ public class AgricultoresDao {
 				String nome = resultSet.getString(3);
 				agricultores.setNome(nome);
 				agricultores.setEmail(resultSet.getString(4));
-				agricultores.setProdutoproduzido(resultSet.getString(5));
+				agricultores.setFoto(resultSet.getString(5));
+				agricultores.setProdutoproduzido(resultSet.getString(6));
 				
 				
 			}

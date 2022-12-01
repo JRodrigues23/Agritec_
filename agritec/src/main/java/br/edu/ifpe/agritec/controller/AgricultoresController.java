@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -113,7 +114,7 @@ public class AgricultoresController {
 			//redirect do botão submeter 
 			return new ModelAndView ( "redirect:/administrativo/agricultores");
 	}
-		
+		//PARTE DE ADCIONAR IMAGEM NA PASTA 
 		@GetMapping("administrativo/Agricultor/novoagricultor/mostrarFoto/{foto}")
 		public byte[] retornarFoto(@PathVariable("foto") String foto) {
 			File fotoArquivo = new File(caminhofotoAgricultor+foto);
@@ -125,13 +126,9 @@ public class AgricultoresController {
 					e.printStackTrace();	
 				}
 			}
-		return null;
-			
-			
+		return null;	
 		}
-		
-	
-		
+			
 		//PARTE DE EDITAR 
 		@GetMapping("administrativo/agricultor/editarAgricultor/{idagri}")
 		public ModelAndView editar(@PathVariable ("idagri")int idagri) {
@@ -173,11 +170,7 @@ public class AgricultoresController {
 		
 		//FIM DA PARTE DE EDITAR
 		
-		
-		
-		
 		// PARTE DE DELETAR 
-		
 		@PostMapping ("/administrativo/agricultor/{idagri}/delete")
 		public ModelAndView deleteAgricultor(@PathVariable int idagri) {
 			//int idagri = (int) idagri.intValue():
@@ -188,16 +181,16 @@ public class AgricultoresController {
 				}
 				return new ModelAndView("redirect:/administrativo/agricultores");
 		}
-		
 		// FIM DA PARTE DE DELETAR 
 		
-		
 		//PARTE DE EXIBIR IMAGEM
-		@PostMapping ("/administrativo/agricultor/mostrarFoto/{foto}")
+		@PostMapping ("/administrativo/Agricultor/agricultores/mostrarFoto/{foto}")
+		@ResponseBody
 		public byte[] retornarImagem(@PathVariable("foto") String foto) throws IOException {
-			System.out.println(foto);
+		//	System.out.println(foto);
 			File imagemArquivo = new File(caminhofotoAgricultor+foto);
 			if (foto != null || foto.trim().length() > 0) {
+				System.out.println("NO IF");
 			
 					return Files.readAllBytes(imagemArquivo.toPath());
 				
