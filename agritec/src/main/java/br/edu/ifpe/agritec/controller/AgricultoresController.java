@@ -32,7 +32,7 @@ import br.edu.ifpe.agritec.model.Produto;
 public class AgricultoresController {
 	
 	//caminho de onde salva a imagem
-	private static String caminhofotoAgricultor = "D:\\imagensAgricultores/";
+	private static String caminhofotoAgricultor = "C:\\imagensAgricultores/";
 	// fim do caminho
 	
 	
@@ -193,18 +193,16 @@ public class AgricultoresController {
 		
 		
 		//PARTE DE EXIBIR IMAGEM
-		@PostMapping ("/administrativo/agricultor/mostrarImagem/{imagem}")
-		public byte[] retornarImagem(@PathVariable("foto") String foto) {
+		@PostMapping ("/administrativo/agricultor/mostrarFoto/{foto}")
+		public byte[] retornarImagem(@PathVariable("foto") String foto) throws IOException {
+			System.out.println(foto);
 			File imagemArquivo = new File(caminhofotoAgricultor+foto);
 			if (foto != null || foto.trim().length() > 0) {
-				try {
+			
 					return Files.readAllBytes(imagemArquivo.toPath());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				
 			}
-			return null;
+		return null;	
 	}
 	//FIM DA PARTE DE EXIBIR IMAGEM	
 
