@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.edu.ifpe.agritec.dao.AlimentosDao;
 import br.edu.ifpe.agritec.model.Alimentos;
 import br.edu.ifpe.agritec.model.Produto;
+import br.edu.ifpe.agritec.model.Tipo;
 
 @Controller
 public class AlimentosController {
@@ -41,8 +42,8 @@ public class AlimentosController {
 	@GetMapping ("administrativo/Alimentos/novoalimentos")
 	public ModelAndView novoalimentos() {
 		ModelAndView mv = new  ModelAndView("administrativo/Alimentos/novoalimentos");
-		//mv.addObject();
-		return mv;	
+		mv.addObject("Tipo", Tipo.values());
+		return mv;
 	}
 	
 	

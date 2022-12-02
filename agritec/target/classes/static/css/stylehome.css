@@ -100,8 +100,8 @@ body {
  * nav-pills home
  */
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-	color: rgb(255, 255, 255);
-	background-color: rgb(0, 128, 0);
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 255, 255);
 }
 
 .nav-pills .nav-link.active1, .nav-pills .show>.nav-link {
@@ -114,7 +114,10 @@ body {
 	color: rgb(255, 255, 255);
 	background-color: rgb(0, 128, 0);
 }
-
+.nav-pills .nav-link {
+	color: rgb(255, 255, 255);
+	background-color: rgb(0, 128, 0);
+}
 
 /*
  * toogle do navbar do menu

@@ -35,10 +35,9 @@ public class AlimentosDao {
 		stmt.setString(1, alimentos.getNome());
 //		stmt.setDate(2, new Date(dateDeValidade.getTime()));
 //		stmt.setDate(3, new Date(dateDecolheita.getTime()));
-		stmt.setString(2,"10/10/2010");
-		stmt.setString(3, "10/12/2022");
+		stmt.setString(2, alimentos.getDataDeColheita());
+		stmt.setString(3, alimentos.getDataDeValidade());
 		stmt.setString(4, alimentos.getTipo());
-		
 		stmt.execute();
 		stmt.close();
 		connection.close();
