@@ -19,4 +19,9 @@ public class PrincipalController {
 		return "administrativo/usuarios/home";
 	}
 
+	
+	@GetMapping("/administrativo/usuarios/alimen")
+	public String acessarTabelaalimento() {
+		return "administrativo/usuarios/alimen";
+	}
 }

@@ -14,7 +14,10 @@ a {
 }
 
 img {
-  width: 100%;
+  width: 110%;
+  position:absolute;
+  margin-bottom:-200px;
+  margin-top: -110px;
   height: auto;
 }
 
