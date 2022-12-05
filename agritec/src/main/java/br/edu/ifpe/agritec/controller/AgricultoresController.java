@@ -79,8 +79,8 @@ public class AgricultoresController {
 	
 
 		@PostMapping("administrativo/agricultores")
-		public ModelAndView createAgricultores(@Validated Agricultores agricultores, BindingResult bindingResults, @RequestParam("file") MultipartFile fotoAgricultores) {
-			
+		public ModelAndView createAgricultores(@Validated Agricultores agricultores, BindingResult bindingResults, @RequestParam("fileAgricultor") MultipartFile fotoAgricultores) {
+			//agricultores.setFoto(file.getBytes());
 			if(bindingResults.hasErrors()) {
 				ModelAndView mv = new ModelAndView("administrativo/Agricultor/novoagricultor");
 				//mv.addObject("Produto",Produto.values());
@@ -105,6 +105,7 @@ public class AgricultoresController {
 					Files.write(CaminhoImagens, bytes);
 					
 					agricultores.setNome(String.valueOf(agricultores.getIdagri())+fotoAgricultores.getOriginalFilename());
+					agricultoresDao.saveAndFlush(agricultores);
 					
 				}	
 			}catch(IOException e) {
@@ -186,17 +187,11 @@ public class AgricultoresController {
 		//PARTE DE EXIBIR IMAGEM
 		@PostMapping ("/administrativo/Agricultor/agricultores/mostrarFoto/{foto}")
 		@ResponseBody
-		public byte[] retornarImagem(@PathVariable("foto") String foto) throws IOException {
+		public Byte retornarImagem(@PathVariable("foto") Integer foto) {
 		//	System.out.println(foto);
-			File imagemArquivo = new File(caminhofotoAgricultor+foto);
-			if (foto != null || foto.trim().length() > 0) {
-				System.out.println("NO IF");
-			
-					return Files.readAllBytes(imagemArquivo.toPath());
-				
-			}
-		return null;	
-	}
+			Agricultores agricultores = this.agricultoresDao.getOne(foto);
+			return agricultores.getFoto();
+		}
 	//FIM DA PARTE DE EXIBIR IMAGEM	
 
 }

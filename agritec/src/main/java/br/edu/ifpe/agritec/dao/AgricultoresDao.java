@@ -27,7 +27,7 @@ public class AgricultoresDao {
 	stmt.setString(1, agricultores.getCpf());
 	stmt.setString(2, agricultores.getNome());
 	stmt.setString(3, agricultores.getEmail());
-	stmt.setString(4, agricultores.getFoto());
+	stmt.setByte(4, agricultores.getFoto());
 	stmt.setString(5, agricultores.getProdutoproduzido());
 	
 	stmt.execute();
@@ -62,7 +62,7 @@ public class AgricultoresDao {
 			
 			String email = resultSet.getString(4);
 			agricultores.setEmail(email);
-			agricultores.setFoto(resultSet.getString(5));
+			agricultores.setFoto(resultSet.getByte(5));
 			agricultores.setProdutoproduzido(resultSet.getString(6));
 			
 			listaTodosAgricultores.add(agricultores);
@@ -96,7 +96,7 @@ public class AgricultoresDao {
 				String nome = resultSet.getString(3);
 				agricultores.setNome(nome);
 				agricultores.setEmail(resultSet.getString(4));
-				agricultores.setFoto(resultSet.getString(5));
+				agricultores.setFoto(resultSet.getByte(5));
 				agricultores.setProdutoproduzido(resultSet.getString(6));
 				
 				
@@ -145,6 +145,11 @@ public class AgricultoresDao {
 	public void saveAndFlush(Agricultores agricultores) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public Agricultores getOne(Integer foto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

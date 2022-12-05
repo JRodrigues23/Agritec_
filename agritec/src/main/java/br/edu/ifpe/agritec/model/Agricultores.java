@@ -8,10 +8,11 @@ public class Agricultores {
 	private String nome;
 	private String email;
 	private String produtoproduzido;
-	private String foto;
+	@Lob
+	private Byte  foto;
 
 	
-	public Agricultores(int idagri, String cpf, String nome, String email, String produtoproduzido, String foto) {
+	public Agricultores(int idagri, String cpf, String nome, String email, String produtoproduzido, Byte foto) {
 	super();
 	this.idagri = idagri;
 	this.cpf = cpf;
@@ -56,14 +57,13 @@ public class Agricultores {
 		this.produtoproduzido = produtoproduzido;
 	}
 
-	public String getFoto() {
+	public Byte getFoto() {
 		return foto;
 	}
 
-	public void setFoto(String foto) {
+	public void setFoto(Byte foto) {
 		this.foto = foto;
-	}
-
 	
+	}
 
 }
