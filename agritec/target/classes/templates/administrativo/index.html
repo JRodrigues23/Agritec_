@@ -10,8 +10,8 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <!-- DESTAQUES -->
-    <link rel="stylesheet" href="css do slide/estilo.css">
-    <link rel="stylesheet" href="css do slide/carrossel.css">>
+    <link rel="stylesheet" href="static/cssdoslide/estilo.css">
+    <link rel="stylesheet" href="css/carrossel.css">>
 
     <!-- Swiper -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -74,11 +74,47 @@
         <section class="section" id="destaque">
             <div class="text">
                 <div class="container grid">
-                   
-                    </div>
-          CALENDARIO AQUI!!!!
-
-                </div>
+                
+               <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-bs-interval="6000">
+                                <!--img class="image-slide" src="imagens/carambola.jpg" class="d-block w-80" alt="..."-->
+                                <div class=" d-none d-md-block">carousel-caption
+                                    <h5>Carambola</h5>
+                                    <p> Fortalece o sistema imulonogico,Retarda o envelhecimento,Ajuda a combater as inflamações, Melhora as cirulações sanguineas,Controla pressão arterial.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="2000">
+                                <!--img class="image-slide" src="imagens/aborbora.jpeg" class="d-block w-80" alt="..."-->
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Abóbora / Jerimun</h5>
+                                    <p>Rica em carotenóides, pigmentos com propriedades fotoprotetoras que protegem a pele contra os raios ultravioleta do sol, ajudando a prevenir o surgimento do câncer de pele.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <!--img class="image-slide" src="imagens/mexirica.jpg" class="d-block w-80" alt="..."-->
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Mexerica / Tangerina</h5>
+                                    <p>Rica em Vitamina C,Ela favorece a produção de colágeno,Ajuda a eliminar os radicais livres que poderiam danificar células saudáveis,Facilita a digestão</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+                       
+                        </div>    
+                   </div>     
         </section>
         <!-- FIM DO DESTAQUE -->
 
