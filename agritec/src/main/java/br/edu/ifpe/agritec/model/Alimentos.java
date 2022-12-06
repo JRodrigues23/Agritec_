@@ -40,6 +40,10 @@ public class Alimentos {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	public static Object values() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 

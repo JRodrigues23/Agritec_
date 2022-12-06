@@ -74,27 +74,45 @@ public class AlimentosController {
 			
 	}
 	//UPDATE
-	@PostMapping("administrativo/Alimentos/editarAlimentos/{idAlimentos}")
-	public ModelAndView update (@PathVariable int idAlimentos, Alimentos alimentos, BindingResult bindingResults) {
-		if(bindingResults.hasErrors()){
-		ModelAndView mv = new ModelAndView ("administrativo/Alimentos/editarAlimentos");
-		mv.addObject("Produto",Produto.values());
-		return mv;
+	@GetMapping("administrativo/Alimentos/editarAlimentos/{idAlimentos}")
+	public ModelAndView editar (@PathVariable ("idAlimentos")int idAlimentos) {
+		Alimentos alimentos = null;
+		try {
+			alimentos = (Alimentos) alimentosdao.consultarTodosAlimentos();
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
+		ModelAndView mv = new ModelAndView("administrativo/Alimentos/editarAlimentos");
+		mv.addObject("alimentos", alimentos);
+		return mv;
+		}
+	
+	@PostMapping ("administrativo/Alimentos/editarAlimentos/{idAlimentos}")
+	public ModelAndView update (@PathVariable int idAlimentos,Alimentos alimentos, BindingResult bindingResults) {
+		if(bindingResults.hasErrors()) {
+			ModelAndView mv = ModelAndView ("administrativo/Alimentos/editarAlimentos");
+			mv.addObject("Alimentos", Alimentos.values());
+			return mv;
 		}else {
 			try {
 				alimentos.setIdAlimentos(idAlimentos);
 				alimentosdao.atualizarAlimentos(alimentos);
-			}catch  (ClassNotFoundException | SQLException e) {
+			}catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
-			return new ModelAndView("redirect/administrativo/alimentos");
+			return new ModelAndView("redirect:/administrativo/alimentos");
 		}
-		
 	}
-	
 	// PARTE DE DELETAR 
 	
+			private ModelAndView ModelAndView(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 			@PostMapping ("/administrativo/alimentos/{idAlimentos}/delete")
 			public ModelAndView deleteAlimentos(@PathVariable int idAlimentos) {
 				//int idagri = (int) idagri.intValue():
