@@ -74,7 +74,7 @@ public class AgricultoresDao {
 		return listaTodosAgricultores;
 	}
 	
-	//CONSULTA  
+	//CONSULTA   
 		public Agricultores colsultarAgricultoresId(int idagri) throws ClassNotFoundException, SQLException{
 			Connection connection = ConexaoMySQL.getConexaoMySQL();
 			String sql = "SELECT `idAgri`,  `cpf`, `nome`, `email`,`foto`, `produtoproduzido` FROM `agricultores` WHERE idagri=?";
@@ -145,16 +145,6 @@ public class AgricultoresDao {
 	public void saveAndFlush(Agricultores agricultores) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	public Agricultores getOne(Integer foto) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Object findAll() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	

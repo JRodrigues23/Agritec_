@@ -55,6 +55,7 @@ public class Agricultores {
 	public void setProdutoproduzido(String produtoproduzido) {
 		this.produtoproduzido = produtoproduzido;
 	}
+
 	public String getFoto() {
 		return foto;
 	}
@@ -62,5 +63,7 @@ public class Agricultores {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-}
+
 	
+
+}

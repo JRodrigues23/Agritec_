@@ -29,7 +29,7 @@ import br.edu.ifpe.agritec.model.Produto;
 
 
 @Controller
-@requestMapping
+@requestMapping 
 public class AgricultoresController {
 	
 	//caminho de onde salva a imagem
@@ -79,8 +79,8 @@ public class AgricultoresController {
 	
 
 		@PostMapping("administrativo/agricultores")
-		public ModelAndView createAgricultores(@Validated Agricultores agricultores, BindingResult bindingResults, @RequestParam("foto") MultipartFile fotoAgricultores) {
-			//agricultores.setFoto(file.getBytes());
+		public ModelAndView createAgricultores(@Validated Agricultores agricultores, BindingResult bindingResults, @RequestParam("file") MultipartFile fotoAgricultores) {
+			
 			if(bindingResults.hasErrors()) {
 				ModelAndView mv = new ModelAndView("administrativo/Agricultor/novoagricultor");
 				//mv.addObject("Produto",Produto.values());
@@ -104,8 +104,7 @@ public class AgricultoresController {
 					Path CaminhoImagens = Paths.get(caminhofotoAgricultor+String.valueOf(agricultores.getIdagri())+fotoAgricultores.getOriginalFilename());
 					Files.write(CaminhoImagens, bytes);
 					
-					agricultores.setFoto(String.valueOf(agricultores.getIdagri())+fotoAgricultores.getOriginalFilename());
-					agricultoresDao.saveAndFlush(agricultores);
+					agricultores.setNome(String.valueOf(agricultores.getIdagri())+fotoAgricultores.getOriginalFilename());
 					
 				}	
 			}catch(IOException e) {
@@ -187,11 +186,17 @@ public class AgricultoresController {
 		//PARTE DE EXIBIR IMAGEM
 		@PostMapping ("/administrativo/Agricultor/agricultores/mostrarFoto/{foto}")
 		@ResponseBody
-		public Byte retornarImagem(@PathVariable("foto") Integer foto) {
+		public byte[] retornarImagem(@PathVariable("foto") String foto) throws IOException {
 		//	System.out.println(foto);
-			Agricultores agricultores = this.agricultoresDao.getOne(foto);
-			return agricultores.getFoto();
-		}
+			File imagemArquivo = new File(caminhofotoAgricultor+foto);
+			if (foto != null || foto.trim().length() > 0) {
+				System.out.println("NO IF");
+			
+					return Files.readAllBytes(imagemArquivo.toPath());
+				
+			}
+		return null;	
+	}
 	//FIM DA PARTE DE EXIBIR IMAGEM	
 
 }
