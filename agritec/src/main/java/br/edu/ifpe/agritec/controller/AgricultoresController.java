@@ -79,7 +79,7 @@ public class AgricultoresController {
 	
 
 		@PostMapping("administrativo/agricultores")
-		public ModelAndView createAgricultores(@Validated Agricultores agricultores, BindingResult bindingResults, @RequestParam("fileAgricultor") MultipartFile fotoAgricultores) {
+		public ModelAndView createAgricultores(@Validated Agricultores agricultores, BindingResult bindingResults, @RequestParam("foto") MultipartFile fotoAgricultores) {
 			//agricultores.setFoto(file.getBytes());
 			if(bindingResults.hasErrors()) {
 				ModelAndView mv = new ModelAndView("administrativo/Agricultor/novoagricultor");
@@ -104,7 +104,7 @@ public class AgricultoresController {
 					Path CaminhoImagens = Paths.get(caminhofotoAgricultor+String.valueOf(agricultores.getIdagri())+fotoAgricultores.getOriginalFilename());
 					Files.write(CaminhoImagens, bytes);
 					
-					agricultores.setNome(String.valueOf(agricultores.getIdagri())+fotoAgricultores.getOriginalFilename());
+					agricultores.setFoto(String.valueOf(agricultores.getIdagri())+fotoAgricultores.getOriginalFilename());
 					agricultoresDao.saveAndFlush(agricultores);
 					
 				}	

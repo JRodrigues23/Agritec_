@@ -30,22 +30,19 @@ public class PrincipalController {
 	}
 	
 	//acessa a tela de fornecedores da tela inicial
-	@Autowired
-	private AgricultoresDao agricultoresdao;
+	//@Autowired
+	//private AgricultoresDao agricultoresdao;
 	
 	@GetMapping ("/administrativo/usuarios/FornecedoresAgri")
-	public ModelAndView FornecedoresAgri() {
-		ModelAndView mv = ModelAndView ("/administrativo/usuarios/FornecedoresAgri");
-		mv.addObject("FornecedoresAgri", agricultoresdao.findAll());
-		return mv;
+	public String FornecedoresAgri() {
+		//ModelAndView mv = ModelAndView ("/administrativo/usuarios/FornecedoresAgri");
+		//mv.addObject("FornecedoresAgri", agricultoresdao.findAll());
+		return "administrativo/usuarios/FornecedoresAgri";
 		
 	}
 
 
-	private ModelAndView ModelAndView(String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
+
 	
 }
