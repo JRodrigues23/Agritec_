@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,11 +28,11 @@ import br.edu.ifpe.agritec.model.Produto;
 
 
 @Controller
-@requestMapping 
+@requestMapping
 public class AgricultoresController {
 	
 	//caminho de onde salva a imagem
-	private static String caminhofotoAgricultor = "C:\\imagensAgricultores/";
+	private static String caminhofotoAgricultor = "D:\\imagensAgricultores/";
 	// fim do caminho
 	
 	
@@ -82,10 +81,10 @@ public class AgricultoresController {
 		public ModelAndView createAgricultores(@Validated Agricultores agricultores, BindingResult bindingResults, @RequestParam("file") MultipartFile fotoAgricultores) {
 			
 			if(bindingResults.hasErrors()) {
-				ModelAndView mv = new ModelAndView("administrativo/Agricultor/novoagricultor");
-				//mv.addObject("Produto",Produto.values());
-				return mv;
-				}
+			ModelAndView mv = new ModelAndView("administrativo/Agricultor/novoagricultor");
+			mv.addObject("Produto",Produto.values());
+			return mv;
+			}
 			
 			try {
 				agricultoresDao.adcionarAgricultores(agricultores);	
@@ -100,7 +99,6 @@ public class AgricultoresController {
 			try {
 				if(!fotoAgricultores.isEmpty()) {
 					byte[] bytes = fotoAgricultores.getBytes();
-					//ESSA PARTE GARANTE QUE A IMAGEM NÃO SEJA SALVA COM O MESMO NOME
 					Path CaminhoImagens = Paths.get(caminhofotoAgricultor+String.valueOf(agricultores.getIdagri())+fotoAgricultores.getOriginalFilename());
 					Files.write(CaminhoImagens, bytes);
 					
@@ -114,7 +112,7 @@ public class AgricultoresController {
 			//redirect do botão submeter 
 			return new ModelAndView ( "redirect:/administrativo/agricultores");
 	}
-		//PARTE DE ADCIONAR IMAGEM NA PASTA 
+		
 		@GetMapping("administrativo/Agricultor/novoagricultor/mostrarFoto/{foto}")
 		public byte[] retornarFoto(@PathVariable("foto") String foto) {
 			File fotoArquivo = new File(caminhofotoAgricultor+foto);
@@ -126,9 +124,11 @@ public class AgricultoresController {
 					e.printStackTrace();	
 				}
 			}
-		return null;	
-		}
+		return null;
 			
+			
+		}
+		
 		//PARTE DE EDITAR 
 		@GetMapping("administrativo/agricultor/editarAgricultor/{idagri}")
 		public ModelAndView editar(@PathVariable ("idagri")int idagri) {
@@ -170,7 +170,11 @@ public class AgricultoresController {
 		
 		//FIM DA PARTE DE EDITAR
 		
+		
+		
+		
 		// PARTE DE DELETAR 
+		
 		@PostMapping ("/administrativo/agricultor/{idagri}/delete")
 		public ModelAndView deleteAgricultor(@PathVariable int idagri) {
 			//int idagri = (int) idagri.intValue():
@@ -181,22 +185,9 @@ public class AgricultoresController {
 				}
 				return new ModelAndView("redirect:/administrativo/agricultores");
 		}
+		
 		// FIM DA PARTE DE DELETAR 
 		
-		//PARTE DE EXIBIR IMAGEM
-		@PostMapping ("/administrativo/Agricultor/agricultores/mostrarFoto/{foto}")
-		@ResponseBody
-		public byte[] retornarImagem(@PathVariable("foto") String foto) throws IOException {
-		//	System.out.println(foto);
-			File imagemArquivo = new File(caminhofotoAgricultor+foto);
-			if (foto != null || foto.trim().length() > 0) {
-				System.out.println("NO IF");
-			
-					return Files.readAllBytes(imagemArquivo.toPath());
-				
-			}
-		return null;	
-	}
-	//FIM DA PARTE DE EXIBIR IMAGEM	
+	
 
 }

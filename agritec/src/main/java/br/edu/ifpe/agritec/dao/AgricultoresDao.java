@@ -16,19 +16,18 @@ import java.util.ArrayList;
 
 public class AgricultoresDao {
 	
-	//ADCIONA NO BANCO DE DADOS
+	//ADCIONA NO BANCO DA DADOS
 	public void adcionarAgricultores(Agricultores agricultores) throws ClassNotFoundException, SQLException{
 		
 		Connection connection = ConexaoMySQL.getConexaoMySQL();
 	String sql = "INSERT INTO `agricultores`"
-			+ "( `cpf`,  `nome` ,`email`,`foto`,`produtoproduzido`) "
-			+ " VALUES (? , ? , ? , ? , ?)";
+			+ "( `cpf`,  `nome` ,`email`, `produtoproduzido`) "
+			+ " VALUES (? , ? , ? , ?)";
 	PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 	stmt.setString(1, agricultores.getCpf());
 	stmt.setString(2, agricultores.getNome());
 	stmt.setString(3, agricultores.getEmail());
-	stmt.setString(4, agricultores.getFoto());
-	stmt.setString(5, agricultores.getProdutoproduzido());
+	stmt.setString(4, agricultores.getProdutoproduzido());
 	
 	stmt.execute();
 
@@ -40,7 +39,7 @@ public class AgricultoresDao {
 	//CONSULTA 
 	public List<Agricultores> colsultarTodosAgricultores() throws ClassNotFoundException, SQLException{
 		Connection connection = ConexaoMySQL.getConexaoMySQL();
-		String sql = "SELECT `idAgri`,  `cpf`, `nome`, `email`,`foto`, `produtoproduzido` FROM `agricultores`";
+		String sql = "SELECT `idAgri`,  `cpf`, `nome`, `email`, `produtoproduzido` FROM `agricultores`";
 
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		
@@ -56,14 +55,10 @@ public class AgricultoresDao {
 		
 			String cpf = resultSet.getString(2);
 			agricultores.setCpf(cpf);
-			
 			String nome = resultSet.getString(3);
 			agricultores.setNome(nome);
-			
-			String email = resultSet.getString(4);
-			agricultores.setEmail(email);
-			agricultores.setFoto(resultSet.getString(5));
-			agricultores.setProdutoproduzido(resultSet.getString(6));
+			agricultores.setEmail(resultSet.getString(4));
+			agricultores.setProdutoproduzido(resultSet.getString(5));
 			
 			listaTodosAgricultores.add(agricultores);
 			
@@ -74,10 +69,10 @@ public class AgricultoresDao {
 		return listaTodosAgricultores;
 	}
 	
-	//CONSULTA   
+	//CONSULTA 
 		public Agricultores colsultarAgricultoresId(int idagri) throws ClassNotFoundException, SQLException{
 			Connection connection = ConexaoMySQL.getConexaoMySQL();
-			String sql = "SELECT `idAgri`,  `cpf`, `nome`, `email`,`foto`, `produtoproduzido` FROM `agricultores` WHERE idagri=?";
+			String sql = "SELECT `idAgri`,  `cpf`, `nome`, `email`, `produtoproduzido` FROM `agricultores` WHERE idagri=?";
 
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setInt(1, idagri);
@@ -96,8 +91,7 @@ public class AgricultoresDao {
 				String nome = resultSet.getString(3);
 				agricultores.setNome(nome);
 				agricultores.setEmail(resultSet.getString(4));
-				agricultores.setFoto(resultSet.getString(5));
-				agricultores.setProdutoproduzido(resultSet.getString(6));
+				agricultores.setProdutoproduzido(resultSet.getString(5));
 				
 				
 			}
