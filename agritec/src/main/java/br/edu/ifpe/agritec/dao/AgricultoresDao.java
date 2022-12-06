@@ -152,6 +152,11 @@ public class AgricultoresDao {
 		return null;
 	}
 
+	public Object findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	}
 	
