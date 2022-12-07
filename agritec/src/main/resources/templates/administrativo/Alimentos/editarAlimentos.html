@@ -61,53 +61,50 @@
 	</header>
   <img src='/imagens/logoagri.png' alt="logomarca">
   <br> <br> 
-   <center> <h1> EDITAR AGRICULTOR </h1> </center>
+   <center> <h1> EDITAR ALIMENTO </h1> </center>
 	<br> <br> <br> <br>
    
     <div class="container mt-4">
     <div class="row">
     
-
-    <form th:action='@{/administrativo/Alimentos/editarAlimentos/{idAlimentos}(idAlimentos = ${idAlimentos})}' enctype="multipart/form-data" th:object= "${alimentos}" method='POST'>
+  </body>
+    <form action='@{/administrativo/Alimentos/editarAlimentos/{idAlimentos}(idAlimentos = ${idAlimentos})}' enctype="multipart/form-data" th:object= "${alimentos}" method='POST'>
     	<div class="form-row">
     	
-    	 <div class="col-md-4 mb-3">
-	    	<label class="form-label"> <strong>CPF</strong> </label>
-	    	<input oninput="mascara(this)" class="form-control" type="text"  name="cpf"  id="campo_cpf" placeholder="Apenas Números" th:field="*{cpf}" >  
-	    	<div></div>
-    	</div>
+    
     	
     	 <div class="col-md-4 mb-3">
-	    	<label class="form-label"><strong> NOME</strong> </label>
-	    	<input class="form-control" type="text" name="nome" placeholder="NOME COMPLETO" th:field="*{nome}">
+	    	<label class="form-label"><strong> NOME DO ALIMENTO</strong> </label>
+	    	<input class="form-control" type="text" name="nome" placeholder="NOME DO PRODUTO">
 	    	<div></div>
     	</div>
     	
-   		<div class="col-md-4 mb-3">
-	    	<label class="form-label"><strong> E-MAIL <strong></label>
-	    	<input class="form-control" type="text" name="email" placeholder="example@example.com" th:field="*{email}">
+    		 <div class="col-md-4 mb-3">
+	    	<label class="form-label"> <strong>DATA DE COLHEITA</strong> </label>
+	    	<input oninput="mascara(this)" class="form-control" type="text"  name="dataDeColheita"  id="campo_colheita" placeholder="DIA/MÊS/ANO" >  
 	    	<div></div>
     	</div>
+    	
+   			 <div class="col-md-4 mb-3">
+	    	<label class="form-label"> <strong>DATA DE VALIDADE</strong> </label>
+	    	<input oninput="mascara(this)" class="form-control" type="text"  name="dataDeValidade"  id="campo_validade" placeholder="DIA/MÊS/ANO" >  
+	    	<div></div>
     	</div>
     	
-    	<div class="col-md-4 mb-3">
-    	<label class="form-label"><strong> ADICIONAR UMA FOTO SUA </strong> </label>
-    		<input type="file" name="file" laceholder="FOTO" />
-    		
+    	 <div class="col-md-4 mb-3">
+	    	<label class="form-label"><strong>PRODUTO PRODUZIDO<strong></label>
+	      <select class="form-select" name="tipo">
+	      <option th:each=" uf : ${Tipo}"
+		   th:text="${uf.nome} " th:value="${uf.nome}">
+	      </option>
+	    	<div></div>
+    	</div>
     	</div>
     	
 
-    	//PESQUISAR COMO EXIBIR ESTA PARTE DE FOTO QUE GUARDA NA PASTA 
-    	<div class="col-md-4 mb-3">                                            
-	      <label class="form-label"><strong>PRODUTO PRODUZIDO<strong></label>
-	      <select class="form-select" name="produtoproduzido" th:field="*{produtoproduzido}">
-	      <option th:each=" uf : ${Produto}"
-		   th:text="${uf.nome} " th:value="${uf.nome}">
-	      </option>
+      
 	    	</select>
 	    	<div>
-	    	
-	    	//PESQUISAR COMO EXIBIR ESTA PARTE DE FOTO QUE GUARDA NA PASTA 
 	    </div>
     	</div>
     	
@@ -130,9 +127,9 @@
       return;
    }
    
-   i.setAttribute("maxlength", "14");
-   if (v.length == 3 || v.length == 7) i.value += ".";
-   if (v.length == 11) i.value += "-";
+   i.setAttribute("maxlength", "10");
+   if (v.length == 5 || v.length == 2) i.value += "/";
+   if (v.length == 12) i.value += "/";
 
 }
   </script>
