@@ -89,13 +89,14 @@ public class AlimentosController {
 		
 		ModelAndView mv = new ModelAndView("administrativo/Alimentos/editarAlimentos");
 		mv.addObject("alimentos", alimentos);
+		mv.addObject("Tipo", Tipo.values());
 		return mv;
 		}
 	
-	@PostMapping ("administrativo/Alimentos/editarAlimentos/{idAlimentos}")
+	@PostMapping ("administrativo/alimentos/editarAlimentos/{idAlimentos}")
 	public ModelAndView update (@PathVariable int idAlimentos,Alimentos alimentos, BindingResult bindingResults) {
 		if(bindingResults.hasErrors()) {
-			ModelAndView mv = ModelAndView ("administrativo/Alimentos/editarAlimentos");
+			ModelAndView mv = ModelAndView ("/administrativo/Alimentos/editarAlimentos");
 			mv.addObject("Tipo", Tipo.values());
 			return mv;
 		}else {

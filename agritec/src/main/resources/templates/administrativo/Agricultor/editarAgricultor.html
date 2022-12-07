@@ -80,13 +80,13 @@
     	
     	 <div class="col-md-4 mb-3">
 	    	<label class="form-label"><strong> NOME</strong> </label>
-	    	<input class="form-control" type="text" name="nome" placeholder="NOME COMPLETO" th:field="*{nome}">
+	    	<input class="form-control" type="text" name="nome" maxlength="80" placeholder="NOME COMPLETO" th:field="*{nome}">
 	    	<div></div>
     	</div>
     	
    		<div class="col-md-4 mb-3">
 	    	<label class="form-label"><strong> E-MAIL <strong></label>
-	    	<input class="form-control" type="text" name="email" placeholder="example@example.com" th:field="*{email}">
+	    	<input class="form-control" type="text" name="email" maxlength="50" placeholder="example@example.com" th:field="*{email}">
 	    	<div></div>
     	</div>
     	</div>
@@ -94,7 +94,7 @@
     
     	<div class="col-md-4 mb-3">                                            
 	      <label class="form-label"><strong>PRODUTO PRODUZIDO<strong></label>
-	      <select class="form-select" name="produtoproduzido" th:field="*{produtoproduzido}">
+	      <select class="form-select" name="produtoproduzido">
 	      <option th:each=" uf : ${Produto}"
 		   th:text="${uf.nome} " th:value="${uf.nome}">
 	      </option>

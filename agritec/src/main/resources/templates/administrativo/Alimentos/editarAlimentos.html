@@ -68,14 +68,14 @@
     <div class="row">
     
   </body>
-    <form action='@{/administrativo/Alimentos/editarAlimentos/{idAlimentos}(idAlimentos = ${idAlimentos})}' enctype="multipart/form-data" th:object= "${alimentos}" method='POST'>
+    <form th:action='@{/administrativo/alimentos/editarAlimentos/{idAlimentos}(idAlimentos = ${idAlimentos})}' enctype="multipart/form-data" th:object= "${alimentos}" method='POST'>
     	<div class="form-row">
     	
     
     	
     	 <div class="col-md-4 mb-3">
 	    	<label class="form-label"><strong> NOME DO ALIMENTO</strong> </label>
-	    	<input class="form-control" type="text" name="nome" placeholder="NOME DO PRODUTO">
+	    	<input class="form-control" type="text" name="nome" maxlength="50" placeholder="NOME DO PRODUTO">
 	    	<div></div>
     	</div>
     	

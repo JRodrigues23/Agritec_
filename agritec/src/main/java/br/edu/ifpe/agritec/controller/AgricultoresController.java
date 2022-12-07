@@ -98,7 +98,7 @@ public class AgricultoresController {
 		//PARTE DE EDITAR 
 		@GetMapping("administrativo/agricultor/editarAgricultor/{idagri}")
 		public ModelAndView editar(@PathVariable ("idagri")int idagri) {
-			//Optional<Agricultores> agricultores = agricultores.findById(idagri);
+			
 			Agricultores agricultores =null;
 			try {
 				agricultores =	agricultoresDao.colsultarAgricultoresId(idagri);
@@ -111,15 +111,17 @@ public class AgricultoresController {
 			}
 			ModelAndView mv = new ModelAndView("administrativo/agricultor/editarAgricultor"); 
 			mv.addObject("agricultores",agricultores);
+			mv.addObject("Produto", Produto.values());
 			return mv;		                                  	
 		}
-
+		
+		
 		
 		@PostMapping("administrativo/agricultor/editarAgricultor/{idagri}")
 		public ModelAndView update (@PathVariable int idagri,Agricultores agricultores , BindingResult bindingResults) {
 			if(bindingResults.hasErrors()) {
 				ModelAndView mv = new ModelAndView ("administrativo/agricultor/editarAgricultor");
-				mv.addObject("Produto", Produto.values());
+				mv.addObject("Produto",Produto.values());
 				return mv;
 				
 				}else {

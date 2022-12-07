@@ -24,30 +24,28 @@ public class AlimentosDao {
 	public void adicionarAlimentos(Alimentos alimentos ) throws ClassNotFoundException, SQLException, ParseException{
 		
 		Connection connection = ConexaoMySQL.getConexaoMySQL();
-		String sql = "INSERT INTO `alimentos` ( `nome`, `dataDeValidade`, `dataDeColheita`, `tipo`) VALUES (? , ? , ? , ?) ";
-		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
+	String sql = "INSERT INTO `alimentos` "
+			+ "( `nome`, `dataDeValidade`, `dataDeColheita`, `tipo`)"
+			+ " VALUES (? , ? , ? , ?) ";
+	PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 		
-		//Aqui conversão de string para Date
-//		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//		java.util.Date dateDeValidade = formatter.parse(alimentos.getDataDeValidade());
-//		java.util.Date dateDecolheita = formatter.parse(alimentos.getDataDeColheita());
-
 		
-		stmt.setString(1, alimentos.getNome());
-//		stmt.setDate(2, new Date(dateDeValidade.getTime()));
-//		stmt.setDate(3, new Date(dateDecolheita.getTime()));
-		stmt.setString(2, alimentos.getDataDeColheita());
-		stmt.setString(3, alimentos.getDataDeValidade());
-		stmt.setString(4, alimentos.getTipo());
-		stmt.execute();
-		stmt.close();
-		connection.close();
+	stmt.setString(1, alimentos.getNome());	
+	stmt.setString(2, alimentos.getDataDeColheita());
+	stmt.setString(3, alimentos.getDataDeValidade());
+	stmt.setString(4, alimentos.getTipo());
+		
+	stmt.execute();
+	stmt.close();
+		
+	connection.close();
 
 	} 
 	//CONSULTA
 	public List<Alimentos> consultarTodosAlimentos() throws  ClassNotFoundException, SQLException{
 		Connection connection = ConexaoMySQL.getConexaoMySQL();
 		String sql = "SELECT `idAlimentos`, `nome`, `dataDeValidade`, `dataDeColheita`, `tipo` FROM `alimentos`";
+		
 		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 		
 		ResultSet resultSet = stmt.executeQuery();
@@ -55,10 +53,11 @@ public class AlimentosDao {
 		List<Alimentos> listarTodosAlimentos = new ArrayList<Alimentos>();
 		
 		while(resultSet.next()) {
-			Alimentos alimentos = new Alimentos();
+		Alimentos alimentos = new Alimentos();
 			
 			int idAlimentos = resultSet.getInt("idAlimentos");
 			alimentos.setIdAlimentos(idAlimentos);
+			
 			String nome = resultSet.getString(2);
 			alimentos.setNome(nome);
 			String dataDeValidade = resultSet.getString(3);
@@ -78,10 +77,10 @@ public class AlimentosDao {
 	}
 	
 	
-	
+	//Consulta
 	public Alimentos colsultarAlimentosId(int idalimentos) throws ClassNotFoundException, SQLException{
 		Connection connection = ConexaoMySQL.getConexaoMySQL();
-		String sql = "SELECT `idAlimentos`, `nome`, `dataDeValidade`, `dataDeColheita`, `tipo` FROM `alimentos`";
+		String sql = "SELECT `idAlimentos`, `nome`, `dataDeValidade`, `dataDeColheita`, `tipo` FROM `alimentos` WHERE idAlimentos=?";
 
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		stmt.setInt(1, idalimentos);
@@ -93,7 +92,7 @@ public class AlimentosDao {
 		if(resultSet.next()) {
 			
 			int idAlimentos = resultSet.getInt("idAlimentos");
-			alimentos.setIdAlimentos(idalimentos);
+			alimentos.setIdAlimentos(idAlimentos);
 		
 			String nome = resultSet.getString(2);
 			alimentos.setNome(nome);
