@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
    
-    <title>Lista de Agricultores</title>
+    <title> Lista de Agricultores </title>
     <style> 
      body{
 		background-color:hsl(131,87%,6%);;
@@ -37,6 +37,19 @@
     </style>
   </head>
   <body>
+  <header>
+		<nav class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="btn btn-dark navbar-toggle pull-left">
+						<i class="oi oi-menu"></i>
+					</button>
+					<a class="navbar-brand " href="usuarios"> Painel Administrativo Agricultores</a>
+				</div>
+			</div> 
+		</nav>
+	</header>
+
   <img src='/imagens/logoagri.png' alt="logomarca">
   <br> <br> 
   <h1><center>LISTA DE AGRICULTORES</center></h1>
@@ -52,8 +65,8 @@
     <th scope="col"> CPF </th>
     <th scope="col"> NOME </th>
     <th scope="col"> E-MAIL </th>
+  
     <th scope="col"> PRODUTO PRODUZIDO </th>
-    <th scope="col"></th>
     <th scope="col"></th>
     <th scope="col"></th>
     </tr>
@@ -64,6 +77,7 @@
     <td class="col-4" th:text="${agricultor.cpf}"> CPF </td>
     <td class="col-2" th:text="${agricultor.nome}"> NOME </td>
     <td class="col-2" th:text="${agricultor.email}"> E-MAIL </td>
+  
     <td class="col-2" th:text="${agricultor.produtoproduzido}"> PRODUTO PRODUZIDO </td>
     
     

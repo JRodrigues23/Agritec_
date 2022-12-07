@@ -29,18 +29,29 @@ public class PrincipalController {
 		return "administrativo/usuarios/alimen";
 	}
 	
+	//acessa a tela de CONTATOS da tela inicial 
+		@GetMapping("/administrativo/usuarios/contato")
+		public String acessarcontato() {
+			return "administrativo/usuarios/contato";
+		}
+		
+		
 	//acessa a tela de fornecedores da tela inicial
-	//@Autowired
-	//private AgricultoresDao agricultoresdao;
+	@Autowired
+	private AgricultoresDao agricultoresdao;
 	
 	@GetMapping ("/administrativo/usuarios/FornecedoresAgri")
 	public String FornecedoresAgri() {
 		//ModelAndView mv = ModelAndView ("/administrativo/usuarios/FornecedoresAgri");
 		//mv.addObject("FornecedoresAgri", agricultoresdao.findAll());
-		return "administrativo/usuarios/FornecedoresAgri";
-		
+		return "administrativo/usuarios/FornecedoresAgri";	
 	}
-
+	
+	public ModelAndView ExibirFornecedores() {
+		ModelAndView mv = new ModelAndView("/administrativo/usuarios/FornecedoresAgri");
+		mv.addObject("agricultores", agricultoresdao.findAll());
+		return mv;
+	}
 
 	
 
