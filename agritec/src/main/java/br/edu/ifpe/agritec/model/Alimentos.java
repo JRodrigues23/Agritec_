@@ -7,14 +7,7 @@ public class Alimentos {
 	private String dataDeColheita;
 	private String tipo;
 	
-	public Alimentos(int idAlimentos,String nome, String dataDeValidade, String dataDeColheita, String tipo) {
-	super();
-	this.idAlimentos = idAlimentos;
-	this.nome = nome;
-	this.dataDeValidade = dataDeValidade;
-	this.dataDeColheita = dataDeColheita;
-	this.tipo = tipo;
-	}
+	
 	
 	
 	public int getIdAlimentos() {
@@ -47,9 +40,10 @@ public class Alimentos {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
-	
-	
+	public static Object values() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 

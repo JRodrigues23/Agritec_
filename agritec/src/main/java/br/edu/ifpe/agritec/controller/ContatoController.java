@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.edu.ifpe.agritec.dao.AgricultoresDao;
 import br.edu.ifpe.agritec.dao.ContatoDao;
+import br.edu.ifpe.agritec.model.Agricultores;
 import br.edu.ifpe.agritec.model.Contato;
 
 
@@ -31,6 +33,28 @@ import br.edu.ifpe.agritec.model.Contato;
 @RequestMapping
 public class ContatoController {
 	
+	@GetMapping("administrativo/contato")
+	public ModelAndView contato() {
+		
+		ContatoDao contatodao = new ContatoDao();
+		List<Contato> contato=null;
+		try {
+			contato = contatodao.colsultarTodosContatos();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+		ModelAndView mv = new ModelAndView("qadministrativo/usuarios/contato"); 
+		mv.addObject("contatos",contato);
+		return mv;
+		}
+	
+
 	//INSERINDO NO BANCO DE DADOS
 		@Autowired
 		ContatoDao contatodao;

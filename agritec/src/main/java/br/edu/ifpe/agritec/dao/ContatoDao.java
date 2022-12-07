@@ -34,5 +34,39 @@ public class ContatoDao {
 		connection.close();
 		
 		} 
+	
+		//CONSULTA 
+		public List<Contato> colsultarTodosContatos() throws ClassNotFoundException, SQLException{
+			Connection connection = ConexaoMySQL.getConexaoMySQL();
+			String sql = "SELECT `idcontato`,  `nome`, `email`, `mensagem`  FROM `contato`";
+
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			
+			ResultSet resultSet = stmt.executeQuery();
+			
+			List<Contato> listaTodosContatos = new ArrayList<Contato>();
+			
+			while(resultSet.next()) {
+			Contato contato = new Contato(0, sql, sql, sql);
+				
+				int idcontato = resultSet.getInt("idcontato");
+				contato.setIdcontato(idcontato);
+			
+				String nome = resultSet.getString(2);
+				contato.setNome(nome);
+				String email = resultSet.getString(3);
+				contato.setEmail(email);
+				contato.setMensagem(resultSet.getNString(4));
+				
+				
+				listaTodosContatos.add(contato);
+				
+			}
+			stmt.close();
+			connection.close();
+			
+			return listaTodosContatos;
+		}
+			
 		
 }
