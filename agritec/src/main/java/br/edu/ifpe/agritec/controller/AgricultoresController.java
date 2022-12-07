@@ -31,11 +31,6 @@ import br.edu.ifpe.agritec.model.Produto;
 @requestMapping
 public class AgricultoresController {
 	
-	//caminho de onde salva a imagem
-	private static String caminhofotoAgricultor = "D:\\imagensAgricultores/";
-	// fim do caminho
-	
-	
 	@GetMapping("administrativo/agricultores")
 	public ModelAndView agricultores() {
 		
@@ -78,7 +73,7 @@ public class AgricultoresController {
 	
 
 		@PostMapping("administrativo/agricultores")
-		public ModelAndView createAgricultores(@Validated Agricultores agricultores, BindingResult bindingResults, @RequestParam("file") MultipartFile fotoAgricultores) {
+		public ModelAndView createAgricultores(@Validated Agricultores agricultores, BindingResult bindingResults) {
 			
 			if(bindingResults.hasErrors()) {
 			ModelAndView mv = new ModelAndView("administrativo/Agricultor/novoagricultor");
@@ -93,41 +88,12 @@ public class AgricultoresController {
 			}
 			
 			
-			
-			//parte de adcionar imagem
-			agricultoresDao.saveAndFlush(agricultores);
-			try {
-				if(!fotoAgricultores.isEmpty()) {
-					byte[] bytes = fotoAgricultores.getBytes();
-					Path CaminhoImagens = Paths.get(caminhofotoAgricultor+String.valueOf(agricultores.getIdagri())+fotoAgricultores.getOriginalFilename());
-					Files.write(CaminhoImagens, bytes);
-					
-					agricultores.setNome(String.valueOf(agricultores.getIdagri())+fotoAgricultores.getOriginalFilename());
-					
-				}	
-			}catch(IOException e) {
-				e.printStackTrace();	
-			}
-			
+		
 			//redirect do botão submeter 
 			return new ModelAndView ( "redirect:/administrativo/agricultores");
 	}
 		
-		@GetMapping("administrativo/Agricultor/novoagricultor/mostrarFoto/{foto}")
-		public byte[] retornarFoto(@PathVariable("foto") String foto) {
-			File fotoArquivo = new File(caminhofotoAgricultor+foto);
-			
-			if(foto != null || foto.trim().length() > 0) {
-				try {
-					return Files.readAllBytes(fotoArquivo.toPath());
-				} catch(IOException e) {
-					e.printStackTrace();	
-				}
-			}
-		return null;
-			
-			
-		}
+		
 		
 		//PARTE DE EDITAR 
 		@GetMapping("administrativo/agricultor/editarAgricultor/{idagri}")
