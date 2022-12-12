@@ -334,6 +334,7 @@ nav.show div.icon-close {
 
 #about .image img {
   position: relative;
+  margin-bottom: -80%;
 }
 
 #about .image img,
@@ -344,8 +345,12 @@ nav.show div.icon-close {
 #about .text {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
+
 }
 
+#imgabout{
+	margin-bottom: -15%;
+}
 /*====  SERVICES ============================ */
 .cards.grid {
   gap: 1.5rem;
